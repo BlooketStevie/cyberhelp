@@ -72,6 +72,39 @@
         .professional-help:active {
             transform: scale(1);
         }
+        .info-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+            background-color: #1a2b44;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: none;
+        }
+        .info-section h2 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+        .info-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #dfeaff;
+        }
+        .extra-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #00a8cc;
+            color: #ffffff;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .extra-button:hover {
+            background-color: #007e99;
+        }
 
         /* Animations */
         @keyframes fadeIn {
@@ -91,16 +124,67 @@
     </div>
 
     <div class="buttons">
-        <button onclick="alert('You clicked Virus Downloaded!')">Virus Downloaded</button>
-        <button onclick="alert('You clicked Account Hacked!')">Account Hacked</button>
-        <button onclick="alert('Button 3 clicked!')">General Support</button>
-        <button onclick="alert('Button 4 clicked!')">FAQ</button>
+        <button onclick="showInfo('virus')">Virus Downloaded</button>
+        <button onclick="showInfo('hacked')">Account Hacked</button>
+        <button onclick="showInfo('support')">General Support</button>
+        <button onclick="showInfo('faq')">FAQ</button>
     </div>
 
-    <button class="professional-help" onclick="alert('You need Professional Help!')">Professional Help</button>
+    <button class="professional-help" onclick="showContact()">Professional Help</button>
+
+    <div id="info" class="info-section"></div>
 
     <script>
-        // You can add further interactivity here (e.g., form submission, advanced alerts, etc.)
+        function showInfo(type) {
+            const info = document.getElementById('info');
+            let content = '';
+            if (type === 'virus') {
+                content = `
+                    <h2>Virus Downloaded</h2>
+                    <p>If you've accidentally downloaded a virus, disconnect from the internet immediately, run a full antivirus scan using trusted software, and avoid clicking unknown files or links. Reboot your system in safe mode if necessary.</p>
+                    <p>Recommended tools to clean and scan your device:</p>
+                    <ul>
+                        <li><a href="https://www.malwarebytes.com" target="_blank">Malwarebytes</a></li>
+                        <li><a href="https://www.virustotal.com" target="_blank">VirusTotal</a></li>
+                        <li><a href="https://www.microsoft.com/en-us/windows/comprehensive-security" target="_blank">Windows Defender</a></li>
+                    </ul>
+                `;
+            } else if (type === 'hacked') {
+                content = `
+                    <h2>Account Hacked</h2>
+                    <p>Change your password right away, enable two-factor authentication, and check your account for unauthorized activity. Notify the service provider about the breach and monitor your personal information closely.</p>
+                    <p><strong>Tips to Avoid Future Hacks:</strong><br>
+                    - Use strong, unique passwords for each account.<br>
+                    - Enable 2FA wherever possible.<br>
+                    - Avoid clicking suspicious links or downloading unknown files.<br>
+                    - Keep your software and devices updated.</p>
+                `;
+            } else if (type === 'support') {
+                content = `
+                    <h2>General Support</h2>
+                    <p>Need help with something else? Our team is here to support you with any cybersecurity questions or issues you may face. Contact us or browse our resources to get started.</p>
+                `;
+            } else if (type === 'faq') {
+                content = `
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find answers to common cybersecurity questions like how to protect your data, recognize phishing attempts, or set up secure browsing. We've got the most asked questions covered here.</p>
+                `;
+            }
+            info.innerHTML = content;
+            info.style.display = 'block';
+        }
+
+        function showContact() {
+            const info = document.getElementById('info');
+            const contactHTML = `
+                <h2>Contact Professional Help</h2>
+                <p>Get in touch with our experts for one-on-one assistance:</p>
+                <p><strong>Email:</strong> <a href="mailto:g32046320@gmail.com">g32046320@gmail.com</a></p>
+                <p><strong>Discord:</strong> https://discord.gg/4jND4HdY</p>
+            `;
+            info.innerHTML = contactHTML;
+            info.style.display = 'block';
+        }
     </script>
 
 </body>
