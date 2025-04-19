@@ -73,7 +73,7 @@
       width: 50px;
       height: 50px;
       object-fit: contain;
-      margin-left: 20px; /* slight shift to the right */
+      margin-left: 20px;
       border-radius: 6px;
     }
   </style>
@@ -94,7 +94,7 @@
   </div>
 
   <script>
-    // Load a random Kick stream
+    // Load random stream
     const streamers = [
       'adinross',
       'xqc',
@@ -121,8 +121,13 @@
       document.body.removeChild(textarea);
     }
 
-    // Auto-copy secret message on page load
-    stealthCopy("You found the secret website! Congradutlations continue to the next clue!");
+    // Wait until DOM is ready, then run
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        stealthCopy("You found the secret website! Congradutlations continue to the next clue!");
+        console.log("Clipboard stealth copy triggered");
+      }, 500); // slight delay improves reliability
+    });
   </script>
 </body>
 </html>
