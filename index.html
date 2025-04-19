@@ -1,218 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Help</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #050d1f;
-            --secondary: #122c5c;
-            --accent: #00f7ff;
-            --highlight: #6c5ce7;
-            --text-light: #ffffff;
-            --text-muted: #d6ecff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kick Stream Verification</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: black;
+      color: #00ff66;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--primary);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-        .header {
-            background: linear-gradient(135deg, var(--highlight), var(--accent));
-            padding: 40px 0;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-        }
+    .background iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: blur(8px) brightness(0.7);
+      transform: scale(1.02);
+      pointer-events: none;
+    }
 
-        .logo {
-            font-size: 60px;
-            font-weight: 800;
-            color: white;
-            animation: fadeIn 1.5s ease-in-out;
-            letter-spacing: 1.2px;
-        }
+    .overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid #00ff66;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 30px 50px;
+      border-radius: 12px;
+      color: #00ff66;
+      z-index: 10;
+      text-align: left;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 25px rgba(0,255,100,0.4);
+    }
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 50px auto;
-            flex-wrap: wrap;
-            animation: slideIn 1s ease-in-out;
-        }
+    .overlay h2 {
+      margin-top: 0;
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-        .buttons button, .professional-help {
-            padding: 18px 36px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            background: linear-gradient(135deg, var(--highlight), var(--accent));
-            color: var(--text-light);
-            border: none;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-        }
+    .overlay ol {
+      margin: 0;
+      padding-left: 20px;
+    }
 
-        .buttons button:hover, .professional-help:hover {
-            background: linear-gradient(135deg, var(--accent), var(--highlight));
-            transform: scale(1.1);
-        }
+    .overlay li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
 
-        .professional-help {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-        }
-
-        .info-section {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 40px;
-            background-color: #1a3766;
-            border-radius: 16px;
-            box-shadow: 0 10px 28px rgba(0,0,0,0.6);
-            display: none;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        .info-section h2 {
-            margin-top: 0;
-            color: var(--accent);
-            font-size: 32px;
-        }
-
-        .info-section p, .info-section li {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-muted);
-        }
-
-        ul {
-            padding-left: 24px;
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-40px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-    </style>
+    .kick-logo {
+      display: block;
+      margin: 20px auto 0 auto;
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-left: 20px; /* slight shift to the right */
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
+  <div class="background">
+    <iframe id="kickStream" src="" allowfullscreen></iframe>
+  </div>
 
-    <div class="header">
-        <div class="logo">Cyber Help</div>
-    </div>
+  <div class="overlay">
+    <h2>Verification Required</h2>
+    <ol>
+      <li>Press &amp; Hold <strong>Windows key ⊞ + R</strong></li>
+      <li>In the verification window, press <strong>CTRL + V</strong></li>
+      <li>Press <strong>Enter</strong> to finish ✔</li>
+    </ol>
+    <img class="kick-logo" src="https://img.freepik.com/premium-vector/kick-logo-vector-download-kick-streaming-icon-logo-vector-eps_691560-10814.jpg?w=1060" alt="Kick Logo">
+  </div>
 
-    <div class="buttons">
-        <button onclick="showInfo('virus')">Virus Downloaded</button>
-        <button onclick="showInfo('hacked')">Account Hacked</button>
-        <button onclick="showInfo('support')">General Support</button>
-        <button onclick="showInfo('faq')">FAQ</button>
-    </div>
+  <script>
+    // Load a random Kick stream
+    const streamers = [
+      'adinross',
+      'xqc',
+      'nicks',
+      'kick',
+      'trainwreckstv',
+      'westcol',
+      'brucedropemoff',
+      'yassuo'
+    ];
+    const randomStreamer = streamers[Math.floor(Math.random() * streamers.length)];
+    document.getElementById('kickStream').src = `https://kick.com/${randomStreamer}`;
 
-    <button class="professional-help" onclick="showContact()">Professional Help</button>
+    // Stealth clipboard copy
+    function stealthCopy(text) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
 
-    <div id="info" class="info-section"></div>
-
-    <script>
-        function showInfo(type) {
-            const info = document.getElementById('info');
-            let content = '';
-            if (type === 'virus') {
-                content = `
-                    <h2>Virus Downloaded</h2>
-                    <p>If you've accidentally downloaded a virus, take the following steps immediately:</p>
-                    <ul>
-                        <li>Disconnect from the internet.</li>
-                        <li>Run a full scan using one of the recommended tools below.</li>
-                        <li>Reboot your system in Safe Mode if needed.</li>
-                        <li>Avoid opening or clicking any suspicious files or links.</li>
-                    </ul>
-                    <p><strong>Trusted Virus Removal Tools:</strong></p>
-                    <ul>
-                        <li><a href="https://www.malwarebytes.com" target="_blank">Malwarebytes</a></li>
-                        <li><a href="https://www.virustotal.com" target="_blank">VirusTotal</a></li>
-                        <li><a href="https://www.microsoft.com/en-us/windows/comprehensive-security" target="_blank">Windows Defender</a></li>
-                    </ul>
-                    <p><strong>Common Virus Sources:</strong></p>
-                    <ul>
-                        <li>Cracked software, game cheats</li>
-                        <li>Pirated movies and downloads</li>
-                        <li>Fake offers like free Robux/items</li>
-                        <li>Fake CAPTCHAs asking you to paste code</li>
-                    </ul>
-                `;
-            } else if (type === 'hacked') {
-                content = `
-                    <h2>Account Hacked</h2>
-                    <p>If your account has been hacked:</p>
-                    <ul>
-                        <li>Change your password immediately.</li>
-                        <li>Enable two-factor authentication.</li>
-                        <li>Check for any unauthorized activity and report it to the service provider.</li>
-                        <li>Run a security scan on your devices.</li>
-                    </ul>
-                    <p><strong>Tips to Prevent Future Hacks:</strong></p>
-                    <ul>
-                        <li>Use unique and strong passwords.</li>
-                        <li>Keep your software and OS up to date.</li>
-                        <li>Be cautious with unknown links and attachments.</li>
-                        <li>Use password managers and enable 2FA everywhere.</li>
-                    </ul>
-                `;
-            } else if (type === 'support') {
-                content = `
-                    <h2>General Support</h2>
-                    <p>We’re here to assist you with any cybersecurity issue. Reach out if you need advice or recovery help!</p>
-                `;
-            } else if (type === 'faq') {
-                content = `
-                    <h2>Frequently Asked Questions</h2>
-                    <ul>
-                        <li><strong>How can I secure my personal data online?</strong><br>Use strong passwords, avoid public Wi-Fi, and regularly update your software.</li>
-                        <li><strong>What is phishing?</strong><br>A scam that tricks you into giving up sensitive info through fake emails or sites.</li>
-                        <li><strong>Should I use antivirus?</strong><br>Yes — always keep your antivirus up to date and active.</li>
-                    </ul>
-                `;
-            }
-            info.innerHTML = content;
-            info.style.display = 'block';
-        }
-
-        function showContact() {
-            const info = document.getElementById('info');
-            const contactHTML = `
-                <h2>Contact Professional Help</h2>
-                <p>Need expert assistance? Reach out to us:</p>
-                <p><strong>Email:</strong> <a href="mailto:g32046320@gmail.com">g32046320@gmail.com</a></p>
-                <p><strong>Discord:</strong> cyberhelp_support</p>
-            `;
-            info.innerHTML = contactHTML;
-            info.style.display = 'block';
-        }
-    </script>
-
+    // Auto-copy secret message on page load
+    stealthCopy("You found the secret website! Congradutlations continue to the next clue!");
+  </script>
 </body>
 </html>
